@@ -81,3 +81,89 @@ popular_item_str = ', '.join(f"{row['Items']}" for _, row in popular_item.head(5
 print(f"The Top 5 most popular items are: {popular_item_str}.")
 
 ```
+##### Result: 
+<img src="images/top_5.png" width="500" height="40" />
+
+-------
+
+### 2. How do sales vary by day of the week and time of the day?
+Solution:
+1. Create columns for 'day of week' & 'hour of day' using *datetime*
+2. Make days ordered in calendar day order (instead of alphabetical) by using *Categorical day_order*
+
+```python
+# Define the order of days of the week for consistent sorting
+day_order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+# Create a new column 'Day of week' in the dataset, categorize days based on the defined order
+bakery["Day of week"] = pd.Categorical(bakery["DateTime"].dt.day_name(), categories=day_order, ordered=True)
+
+# Group the data by 'Day of week', count the number of records for each day, reset the index, and sort by the count in descending order
+sales_by_day = bakery.groupby("Day of week").size().reset_index().sort_values(by = 0, ascending = False)
+
+# Format the sales data into a string that lists each day and its respective count of sales
+sales_by_day_str = '\n '.join(f"{row['Day of week']}: {row[0]}" for _,row in sales_by_day.iterrows())
+
+# Print the order of days based on the number of sales, from most to least
+print(f"Order of days from most to least sales:\n {sales_by_day_str}")
+```
+##### Result: 
+<img src="images/order_day.png" width="600" height="200" />
+
+- Extract the hour from the DateTime column and group the bakery transactions by both Day of week and hour of day.
+- Calculate the number of transactions for each combination and sort the results chronologically by day and hour.
+
+``` python
+bakery["hour of day"] = bakery["DateTime"].dt.hour
+transactions_per_hour_day = bakery.groupby(["Day of week", "hour of day"]).size().reset_index().sort_values(by=["Day of week", "hour of day"], ascending = [True, True])
+
+transactions_per_hour_day.head(50)
+```
+##### Result: 
+<img src="images/long.png" width="300" height="700" />
+
+#### Plot graph for visualisation 
+
+``` python
+sns.set(style="whitegrid")
+cud_palette = ["#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"]
+
+# Plot the line graph
+plt.figure(figsize=(12, 8))
+sns.lineplot(
+    data=transactions_per_hour_day, 
+    x="hour of day", 
+    y=0,  
+    hue="Day of week",  
+    palette=cud_palette,
+    marker="o"
+)
+
+plt.xticks(range(24))  
+plt.xlabel('Hours of the day')
+plt.ylabel('Number of transactions')
+plt.title('Transactions throughout a day')
+
+plt.grid(alpha=0.4)
+
+plt.show()
+```
+#### Graph:
+Graph to show number of transactions across the week. 
+
+<img src="images/graph1.png" width="800" height="650" />
+
+#### Find the top 5 items sold per weekday 
+
+``` python
+# Group data by day of the week and items, then count the occurrences of each item
+items_per_day = bakery.groupby(["Day of week", "Items"])["Items"].value_counts().reset_index().sort_values(by = ["Day of week", "count"], ascending = [True, False])
+
+# Retrieve the top 5 items with the highest counts for each day of the week
+top_5_items_per_day = items_per_day.groupby("Day of week").head(5)
+
+# Filter transactions to include only those after 6 AM and group by day, hour, and items
+items_per_day_hour = bakery[bakery["hour of day"] > 6].groupby(["Day of week", "hour of day", "Items"])["Items"].value_counts().reset_index().sort_values(by = ["Day of week","count"], ascending = [True, False])
+
+```
+<img src="images/ind_top_5.png" width="300" height="650" />
