@@ -167,3 +167,64 @@ items_per_day_hour = bakery[bakery["hour of day"] > 6].groupby(["Day of week", "
 
 ```
 <img src="images/ind_top_5.png" width="300" height="650" />
+
+#### Plot frequency chart of top 5 items
+
+``` python
+plt.figure(figsize=(10, 6))
+sns.countplot(data=top_5_items_per_day, x='Items', palette='viridis')
+plt.title("Frequency of Item appearing in Top 5 sales of each day")
+plt.xlabel("Items")
+plt.ylabel("Frequency")
+plt.xticks(rotation=45)
+
+
+plt.show()
+```
+<img src="images/freq.png" width="900" height="650" />
+
+#### Number of items per order
+Analyze the number of items ordered per transaction and provide a summary of the total number of unique transactions. 
+``` python
+# analyze the number of items ordered per transaction.
+transaction_counts = bakery["TransactionNo"].value_counts()
+bakery["Num of items in transaction"] = bakery["TransactionNo"].map(transaction_counts)
+print(bakery)
+
+unique_trans = bakery["TransactionNo"].unique()
+print(f"\nThere are a total of {len(unique_trans)} transactions.")
+```
+
+<img src="images/summary.png" width="1200" height="300" />
+
+
+#### analyze single item transactions
+
+``` python
+
+# Filter transactions that contain only a single item
+single_items = bakery[bakery["Num of items in transaction"] == 1]
+
+# Calculate the proportion of each item ordered for each day of the week
+pct_items = bakery.groupby("Day of week")["Items"].value_counts(normalize = True).reset_index()
+
+# Extract the top 5 items (by proportion) for each day of the week
+pct_items_top_5 = pct_items.groupby("Day of week").head(5)
+
+# Plot a line graph showing the proportion of the top 5 items in single transactions by day of the week
+plt.figure(figsize=(12,8))
+sns.lineplot(
+    data = pct_items_top_5,
+    x = 'Day of week',
+    y = 'proportion',
+    hue = 'Items'
+)
+
+plt.title("Percentage of item in single transactions")
+
+# Customize the y-axis ticks to display percentages (0% to 50% in 10% intervals)
+plt.yticks(np.arange(0, 0.6, 0.1), labels=[f'{int(i * 100)}%' for i in np.arange(0, 0.6, 0.1)])
+
+plt.show()
+```
+
