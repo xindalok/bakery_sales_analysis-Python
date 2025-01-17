@@ -196,9 +196,10 @@ print(f"\nThere are a total of {len(unique_trans)} transactions.")
 ```
 
 <img src="images/summary.png" width="1200" height="300" />
+<img src="images/9465.png" width="350" height="80" />
 
 
-#### analyze single item transactions
+#### Analyze single item transactions
 
 ``` python
 
