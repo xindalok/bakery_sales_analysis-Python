@@ -200,6 +200,9 @@ print(f"\nThere are a total of {len(unique_trans)} transactions.")
 
 
 #### Analyze single item transactions
+- This analysis focuses on single-item transactions to identify the most frequently purchased items across different days of the week.
+- It calculates the proportion of each item in these transactions and visualizes the data using a bar chart.
+- This helps identify trends in customer behavior and supports decisions on inventory, promotions, and sales strategies.
 
 ``` python
 
@@ -216,7 +219,7 @@ print(f"There are {total_orders} total transactions.\n"
       f"There are {num_single_orders} transactions with single-item orders.\n"
       f"{num_single_orders / total_orders * 100:.2f}% of total transactions are single item orders.\n\n")
 ```
-<img src="images/38.png" width="350" height="80" />
+<img src="images/38.png" width="450" height="80" />
 
 ``` python
 # Calculate the proportion of each item ordered for each day of the week
