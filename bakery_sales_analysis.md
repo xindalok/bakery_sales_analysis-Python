@@ -206,6 +206,19 @@ print(f"\nThere are a total of {len(unique_trans)} transactions.")
 # Filter transactions that contain only a single item
 single_items = bakery[bakery["Num of items in transaction"] == 1]
 
+# Count the number of single-item transactions.
+num_single_orders = (single_items['TransactionNo'].count())
+
+# Calculate the total number of transactions in the dataset
+total_orders = bakery['TransactionNo'].nunique()
+
+print(f"There are {total_orders} total transactions.\n"
+      f"There are {num_single_orders} transactions with single-item orders.\n"
+      f"{num_single_orders / total_orders * 100:.2f}% of total transactions are single item orders.\n\n")
+```
+<img src="images/38.png" width="350" height="80" />
+
+``` python
 # Calculate the proportion of each item ordered for each day of the week
 pct_items = bakery.groupby("Day of week")["Items"].value_counts(normalize = True).reset_index()
 
