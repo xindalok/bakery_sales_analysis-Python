@@ -319,6 +319,7 @@ single_items_monthly = single_items.groupby("month_year")["TransactionNo"].size(
 # number of multi-item transactions per month
 multi_items_monthly = multi_items.groupby("month_year").agg({"TransactionNo": "nunique"}).reset_index()
 
+# merge the 3 datasets
 consolidated_monthly = pd.merge(single_items_monthly, multi_items_monthly, on = 'month_year', how = 'inner', suffixes = ('_single', '_multi')).merge(total_monthly_transactions, on = 'month_year', how = 'inner')
 consolidated_monthly = consolidated_monthly.rename(
         columns = {
