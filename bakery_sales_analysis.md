@@ -244,4 +244,89 @@ plt.yticks(np.arange(0, 0.6, 0.1), labels=[f'{int(i * 100)}%' for i in np.arange
 
 plt.show()
 ```
+<img src="images/segmented.png" width="1200" height="600" />
 
+#### Analysis of Multi-Item Transactions by Day of the Week
+- Analyze the proportion of multi-item transactions per day.
+- It calculates the percentage of transactions with more than one item for each day of the week
+- Visualisation of the results in a bar chart.
+
+``` python
+
+# Find out how many transactions have more than 1 item each day 
+
+multi_items = bakery[bakery["Num of items in transaction"] >1]
+multi_items_by_day =  multi_items.groupby("Day of week").agg({"TransactionNo": "nunique"}).reset_index()
+
+# number of transactions per day
+num_transactions_per_day = bakery.groupby("Day of week").agg({"TransactionNo":"nunique"}).reset_index()
+
+# merge tables and calculate percentage of transactions that are multi items per day
+merged_multi_items = pd.merge(multi_items_by_day,num_transactions_per_day, on="Day of week", how="inner")
+merged_multi_items = merged_multi_items.rename(columns={
+    "TransactionNo_x": "multi_item_transactions",
+    "TransactionNo_y": "total_transactions"
+})
+merged_multi_items["pct_multi_items_transactions"] = (merged_multi_items["multi_item_transactions"] / merged_multi_items["total_transactions"]).round(2)
+
+print(merged_multi_items)
+
+```
+<img src="images/merged.png" width="750" height="200" />
+
+Plot graph for visualisation
+
+``` python
+# plot a bar graph showing percentage of multi item orders across the week 
+plt.figure(figsize = (12,8))
+bar_plot = sns.barplot(
+    data = merged_multi_items, 
+    x = 'Day of week',
+    y = 'pct_multi_items_transactions'
+)
+
+plt.title('Percentage of multi-item transactions across the week')
+plt.xlabel('Day of week')
+plt.ylabel('Percentage of multi-item transactions')
+plt.xticks(rotation = 45)
+plt.yticks(np.arange(0, 1.1, 0.1), labels=[f'{int(i * 100)}%' for i in np.arange(0, 1.1, 0.1)])
+
+for p in bar_plot.patches:
+    bar_plot.annotate(f'{p.get_height():.0%}',  # Format the height as a percentage
+                      (p.get_x() + p.get_width() / 2., p.get_height()),  # Position at the center of the bar
+                      ha='center',
+                      va='bottom', 
+                      fontsize=12, 
+                      color='black', 
+                      xytext=(0, 5), 
+                      textcoords='offset points')  
+
+
+
+plt.show()
+```
+<img src="images/percentages.png" width="1200" height="550" />
+
+``` python
+# get dataframes for analysis of monthly total, single-item and multi-item transactions
+
+# monthly total transactions
+total_monthly_transactions = bakery.groupby("month_year").agg({"TransactionNo":"nunique"}).reset_index()
+
+# number of single-item transactions per month 
+single_items_monthly = single_items.groupby("month_year")["TransactionNo"].size().reset_index()
+
+# number of multi-item transactions per month
+multi_items_monthly = multi_items.groupby("month_year").agg({"TransactionNo": "nunique"}).reset_index()
+
+consolidated_monthly = pd.merge(single_items_monthly, multi_items_monthly, on = 'month_year', how = 'inner', suffixes = ('_single', '_multi')).merge(total_monthly_transactions, on = 'month_year', how = 'inner')
+consolidated_monthly = consolidated_monthly.rename(
+        columns = {
+            'TransactionNo_single': 'num_single_item', 
+            'TransactionNo_multi':'num_multi_item', 
+            'TransactionNo':'total_transactions'}
+)
+
+consolidated_monthly["pct_single"] = (consolidated_monthly["num_single_item"] / consolidated_monthly["total_transactions"]).round(2)
+print(consolidated_monthly)
+```
