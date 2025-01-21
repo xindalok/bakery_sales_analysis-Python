@@ -8,7 +8,9 @@
   - [2. How do sales vary by day of the week and time of the day?](#2-how-do-sales-vary-by-day-of-the-week-and-time-of-the-day)
      - [Total Sales per day](#total-sales-per-day)
      - [Hourly and Weekly Sales Analysis](#hourly-and-weekly-sales-analysis)
-     - [Graph](#graph-visualisation) 
+       - [Graph](#graph-visualisation)
+     - [Top 5 items sold each weekday](#top-5-items-sold-per-weekday)
+       - [Frequency chart showing top 5 items](#frequency-chart-of-top-5-items)
  
 
 
@@ -179,7 +181,7 @@ plt.show()
 
 <img src="images/graph1.png" width="800" height="650" />
 
-#### Find the top 5 items sold per weekday 
+#### Top 5 items sold per weekday 
 
 ``` python
 # Group data by day of the week and items, then count the occurrences of each item
@@ -194,7 +196,7 @@ items_per_day_hour = bakery[bakery["hour of day"] > 6].groupby(["Day of week", "
 ```
 <img src="images/ind_top_5.png" width="300" height="650" />
 
-#### Plot frequency chart of top 5 items
+#### Frequency chart of top 5 items
 
 ``` python
 plt.figure(figsize=(10, 6))
