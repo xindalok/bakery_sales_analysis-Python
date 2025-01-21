@@ -555,6 +555,8 @@ Order of days from most to least sales: <br>
 - No cyclical pattern is observed on a monthly basis.
 - Looking at 'Single items by year' chart, there is no distinct pattern when comparing months of 2016 to 2017. 
 
+-----------
+-----------
 
 ## Recommendations for Promotions and Strategy
 
