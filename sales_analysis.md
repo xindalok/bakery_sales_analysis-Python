@@ -10,7 +10,11 @@
      - [Hourly and Weekly Sales Analysis](#hourly-and-weekly-sales-analysis)
        - [Graph](#graph-visualisation)
      - [Top 5 items sold each weekday](#top-5-items-sold-per-weekday)
-       - [Frequency chart showing top 5 items](#frequency-chart-of-top-5-items)
+       - [Frequency chart of top 5 items](#frequency-chart-of-top-5-items)
+     - [Single item transactions](#analyze-single-item-transactions)
+     - [Multi item transactions](#analysis-of-multi-item-transactions-by-day-of-the-week)
+
+
  
 
 
