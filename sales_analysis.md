@@ -1,5 +1,5 @@
-- [Dataset Preview & Preprocessing](#original_dataset)
-  - [DateTime format](#convert_datetime_column)
+- [Dataset Preview & Preprocessing](#original-dataset)
+  - [DateTime format](#convert-datetime-column)
 
 
 ``` python
