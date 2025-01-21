@@ -4,7 +4,8 @@
 - [Analysis metrics](#analysis-metrics)
   - [1. What Are the Top 5 Most Popular Products and Categories?](#1-what-are-the-top-5-most-popular-products-and-categories)
      - [Result for 1](#result-for-1)
-- [How do sales vary by day of the week and time of the day?](#2-how-do-sales-vary-by-day-of-the-week-and-time-of-the-day)
+  - [How do sales vary by day of the week and time of the day?](#2-how-do-sales-vary-by-day-of-the-week-and-time-of-the-day)
+     - [Result for 2](#result-for-2)
 
 
 
