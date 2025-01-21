@@ -25,7 +25,7 @@ print(bakery.info())
 - There seems to be duplicate rows
 - DayType seems to be incorrect e.g. dates that are Sunday are mislabelled as weekend (added this in after date manipulation futher below. Will rectify in earlier part of code)
 -------------------
-#### Convert "DateTime" column
+#### Convert DateTime column
 - Converts the DateTime column to a datetime format for consistent processing.
 - Creates a new column, DayType_new, to classify days as Weekday or Weekend based on the day of the week.
 - Extracts and organizes date components:
