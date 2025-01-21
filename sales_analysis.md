@@ -13,6 +13,9 @@
        - [Frequency chart of top 5 items](#frequency-chart-of-top-5-items)
      - [Single item transactions](#analyze-single-item-transactions)
      - [Multi item transactions](#analysis-of-multi-item-transactions-by-day-of-the-week)
+       - [Bar graph for visualisation](#bar-graph-for-visualisation)
+
+
 
 
  
@@ -306,7 +309,7 @@ print(merged_multi_items)
 ```
 <img src="images/merged.png" width="750" height="200" />
 
-Plot graph for visualisation
+#### Bar graph for visualisation
 
 ``` python
 # plot a bar graph showing percentage of multi item orders across the week 
