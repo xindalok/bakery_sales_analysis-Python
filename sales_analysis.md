@@ -1,5 +1,11 @@
 - [Dataset Preview & Preprocessing](#original-dataset)
   - [DateTime format](#convert-datetime-column)
+  - [Inspect Duplicate Rows](#inspect-duplicate-rows)
+- [Analysis metrics](#analysis-metrics)
+  - [What Are the Top 5 Most Popular Products and Categories?](#1-what-are-the-top-5-most-popular-products-and-categories)
+     - [Analysis metrics](#analysis-metrics)
+
+
 
 
 ``` python
@@ -67,6 +73,17 @@ else:
     print(f"There are values showing up in {', '.join(map(str, unique_duplicates))} rows.\nIt can be assumed that the duplicated rows are not duplicates but rather items in same transaction.")
 ```
 ------------
+## Analysis Metrics
+
+### 1. What are the Top 5 most popular products and categories?  
+*This metric helps identify key drivers of revenue by understanding customer preferences. Businesses can use this to focus promotions, stock planning, and pricing strategies on high-demand items.*
+
+### 2. How do sales vary by day of the week and time of the day?  
+*This analysis highlights peak sales periods, enabling businesses to optimize staffing, marketing efforts, and promotional timing to maximize revenue during high-traffic periods.*
+
+### 3. What are the seasonal trends and patterns in sales?  
+*Understanding seasonal trends allows businesses to plan inventory, forecast revenue, and develop seasonal marketing campaigns to capitalize on predictable demand shifts.*
+
 ------------
 
 ### 1. What are the Top 5 most popular products and categories?
