@@ -3,7 +3,7 @@
   - [Inspect Duplicate Rows](#inspect-duplicate-rows)
 - [Analysis metrics](#analysis-metrics)
   - [What Are the Top 5 Most Popular Products and Categories?](#1-what-are-the-top-5-most-popular-products-and-categories)
-     - [Analysis metrics](#analysis-metrics)
+     - [Result for 1](#result-for-1)
 
 
 
@@ -102,7 +102,7 @@ popular_item_str = ', '.join(f"{row['Items']}" for _, row in popular_item.head(5
 print(f"The Top 5 most popular items are: {popular_item_str}.")
 
 ```
-##### Result: 
+##### Result for 1: 
 <img src="images/top_5.png" width="500" height="40" />
 
 -------
@@ -128,7 +128,7 @@ sales_by_day_str = '\n '.join(f"{row['Day of week']}: {row[0]}" for _,row in sal
 # Print the order of days based on the number of sales, from most to least
 print(f"Order of days from most to least sales:\n {sales_by_day_str}")
 ```
-##### Result: 
+##### Result for 2: 
 <img src="images/order_day.png" width="600" height="200" />
 
 - Extract the hour from the DateTime column and group the bakery transactions by both Day of week and hour of day.
@@ -496,7 +496,7 @@ plt.show()
 ```
 <img src="images/time.png" width="1200" height="500" />
 
-#### Analysis: 
+#### Result for 3:
 - There seems to be a one time surge in sales over period (Nov 2016 - Mar 2017) before going back to same levels.
 - No cyclical pattern is observed on a monthly basis.
 - Looking at 'Single items by year' chart, there is no distinct pattern when comparing months of 2016 to 2017. 
