@@ -10,11 +10,15 @@
      - [Hourly and Weekly Sales Analysis](#hourly-and-weekly-sales-analysis)
        - [Graph](#graph-visualisation)
      - [Top 5 items sold each weekday](#top-5-items-sold-per-weekday)
-       - [Frequency chart of top 5 items](#frequency-chart-of-top-5-items)
+       - [Frequency chart](#frequency-chart-of-top-5-items)
      - [Single item transactions](#analyze-single-item-transactions)
      - [Multi item transactions](#analysis-of-multi-item-transactions-by-day-of-the-week)
-       - [Bar graph for visualisation](#bar-graph-for-visualisation)
+       - [Bar graph](#bar-graph-for-visualisation)
   - [3. What are the seasonal trends and patterns in sales?](#3-what-are-the-seasonal-trends-and-patterns-in-sales)
+       - [Monthly Transaction Trends](#analyzing-monthly-transaction-trends-and-changes)
+       - [Plot single-item transactions over time](#plot-single-item-transactions-over-time)
+       - [Yearly seasonal trends of total transactions](#yearly-seasonal-trends-of-total-transactions)
+
 
 
 
@@ -392,7 +396,7 @@ print(consolidated_monthly)
 ```
 <img src="images/total_changes.png" width="1200" height="400" />
 
-#### Visually compare single-item transactions over time
+#### Plot single-item transactions over time
 - Create yearly subsets of data from `consolidated_monthly` based on the `month_year` column.
 - Plot the percentage of single-item transactions (`pct_single`) for each year, comparing across months.
 
@@ -432,7 +436,7 @@ plt.show()
 <img src="images/yearly.png" width="1200" height="400" />
 <img src="images/yearly_graph.png" width="1200" height="600" />
 
-#### Explore yearly seasonality of total transactions
+#### Yearly seasonal trends of total transactions
 - Divide the data into separate dataframes for 2016 and 2017.
 - Using a loop, plot the total transactions (`total_trans`) for each month of both years.
 
