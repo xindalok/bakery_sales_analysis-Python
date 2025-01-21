@@ -1,3 +1,4 @@
+### Table of contents
 - [Dataset Preview & Preprocessing](#original-dataset)
   - [DateTime format](#convert-datetime-column)
   - [Inspect Duplicate Rows](#inspect-duplicate-rows)
@@ -7,7 +8,9 @@
   - [2. How do sales vary by day of the week and time of the day?](#2-how-do-sales-vary-by-day-of-the-week-and-time-of-the-day)
      - [Total Sales per day](#total-sales-per-day)
      - [Hourly and Weekly Sales Analysis](#hourly-and-weekly-sales-analysis)
-     - 
+     - [Graph](#graph-visualisation) 
+ 
+
 
 
 
@@ -147,7 +150,7 @@ transactions_per_hour_day.head(50)
 ##### Result: 
 <img src="images/long.png" width="300" height="700" />
 
-#### Plot graph for visualisation 
+#### Graph visualisation 
 
 ``` python
 sns.set(style="whitegrid")
@@ -172,9 +175,7 @@ plt.title('Transactions throughout a day')
 plt.grid(alpha=0.4)
 
 plt.show()
-```
-#### Graph:
-Graph to show number of transactions across the week. 
+``` 
 
 <img src="images/graph1.png" width="800" height="650" />
 
