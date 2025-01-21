@@ -18,6 +18,11 @@
        - [Monthly Transaction Trends](#analyzing-monthly-transaction-trends-and-changes)
        - [Plot single-item transactions over time](#plot-single-item-transactions-over-time)
        - [Yearly seasonal trends of total transactions](#yearly-seasonal-trends-of-total-transactions)
+       - [Graph of sales over time](#graph-of-sales-over-entire-timeframe)
+- [Insights](#insights)
+- [Recommendations](#recommendations-for-promotions-and-strategy)
+
+
 
 
 
@@ -551,11 +556,9 @@ Order of days from most to least sales: <br>
 - Looking at 'Single items by year' chart, there is no distinct pattern when comparing months of 2016 to 2017. 
 
 
-## Business Recommendations for Sales Promotions and Strategy
+## Recommendations for Promotions and Strategy
 
-### Key Recommendations:
-
-1. **Weekend Promotions**:  
+1. **Weekend Promotions**: 
    - Implement targeted promotions or discounts during weekends to capitalize on the higher transaction volumes.  
    - Offer special bundles or deals on popular items like coffee, bread, and pastries to attract more weekend shoppers.
 
