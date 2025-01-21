@@ -76,13 +76,13 @@ else:
 ------------
 ## Analysis Metrics
 
-### 1. What are the Top 5 most popular products and categories?  
+### What are the Top 5 most popular products and categories?  
 *This metric helps identify key drivers of revenue by understanding customer preferences. Businesses can use this to focus promotions, stock planning, and pricing strategies on high-demand items.*
 
-### 2. How do sales vary by day of the week and time of the day?  
+### How do sales vary by day of the week and time of the day?  
 *This analysis highlights peak sales periods, enabling businesses to optimize staffing, marketing efforts, and promotional timing to maximize revenue during high-traffic periods.*
 
-### 3. What are the seasonal trends and patterns in sales?  
+### What are the seasonal trends and patterns in sales?  
 *Understanding seasonal trends allows businesses to plan inventory, forecast revenue, and develop seasonal marketing campaigns to capitalize on predictable demand shifts.*
 
 ------------
