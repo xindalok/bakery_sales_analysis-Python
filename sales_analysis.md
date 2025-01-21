@@ -3,9 +3,11 @@
   - [Inspect Duplicate Rows](#inspect-duplicate-rows)
 - [Analysis metrics](#analysis-metrics)
   - [1. What Are the Top 5 Most Popular Products and Categories?](#1-what-are-the-top-5-most-popular-products-and-categories)
-     - [Result for 1](#result-for-1)
+     - [Top 5 most popular products](#top-5-most-popular-products)
   - [2. How do sales vary by day of the week and time of the day?](#2-how-do-sales-vary-by-day-of-the-week-and-time-of-the-day)
-     - [Result for 2](#result-for-2)
+     - [Total Sales per day](#total-sales-per-day)
+     - [Hourly and Weekly Sales Analysis](#hourly-and-weekly-sales-analysis)
+     - 
 
 
 
@@ -104,13 +106,13 @@ popular_item_str = ', '.join(f"{row['Items']}" for _, row in popular_item.head(5
 print(f"The Top 5 most popular items are: {popular_item_str}.")
 
 ```
-##### Result for 1: 
+##### Top 5 most popular products: 
 <img src="images/top_5.png" width="500" height="30" />
 
 -------
 
 ### 2. How do sales vary by day of the week and time of the day?
-Solution:
+##### Total Sales per day: 
 1. Create columns for 'day of week' & 'hour of day' using *datetime*
 2. Make days ordered in calendar day order (instead of alphabetical) by using *Categorical day_order*
 
@@ -130,10 +132,9 @@ sales_by_day_str = '\n '.join(f"{row['Day of week']}: {row[0]}" for _,row in sal
 # Print the order of days based on the number of sales, from most to least
 print(f"Order of days from most to least sales:\n {sales_by_day_str}")
 ```
-##### Result for 2: 
 <img src="images/order_day.png" width="600" height="200" />
 
-### "Hourly and Weekly Sales Analysis"
+### Hourly and Weekly Sales Analysis
 - Extract the hour from the DateTime column and group the bakery transactions by both Day of week and hour of day.
 - Calculate the number of transactions for each combination and sort the results chronologically by day and hour.
 
