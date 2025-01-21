@@ -393,4 +393,89 @@ plt.show()
 <img src="images/yearly.png" width="1200" height="400" />
 <img src="images/yearly_graph.png" width="1200" height="600" />
 
+#### Explore yearly seasonality of total transactions
+- Divide the data into separate dataframes for 2016 and 2017.
+- Using a loop, plot the total transactions (`total_trans`) for each month of both years.
 
+``` python
+# create sales in 2016 and 2017 to determine if there are yearly cycles
+
+year_list = consolidated_monthly["month_year"].dt.year.unique()
+yearly_sales = {}
+
+# loop through unique years to create a dataframe of each year
+for year in year_list:
+    yearly_sales[f'sales_{year}'] = consolidated_monthly[consolidated_monthly["month_year"].astype(str).str.startswith(str(year))].reset_index(drop = True)
+    
+
+plt.figure(figsize = (10,6))
+
+
+# plot each year by their months, to show comparison between each year by their months
+for year, df in yearly_sales.items():
+    sns.lineplot(
+        data=df,
+        x=df["month_year"].dt.month,  
+        y="total_trans",
+        label=year  
+)
+
+    
+plt.xlabel('Months')
+plt.xticks(
+    ticks=range(1, 13), 
+    labels=pd.to_datetime([f'2020-{month:02d}-01' for month in range(1, 13)]).strftime('%b'),
+    rotation=45
+)
+plt.ylabel('Sales by year')
+plt.grid(True, color='gray', alpha=0.1)
+
+
+plt.show()
+```
+<img src="images/yearly_sales.png" width="800" height="500" />
+
+#### Graph of sales over entire timeframe 
+
+``` python
+# create a plot that will show the relationship of sales over time
+''' had to convert x-axis values to timestamp when using lineplot(), because current format now is Period'''
+'''used date_range() to establish min and max dates from dataframe, for plotting the x axis'''
+
+consolidated_melted = pd.melt(
+    consolidated_monthly, 
+    id_vars=["month_year"], 
+    value_vars=["num_single_item", "num_multi_item"], 
+    var_name="item_type", 
+    value_name="count"
+)
+
+plt.figure(figsize = (12,6))
+
+earliest_date = min(consolidated_melted['month_year'].dt.to_timestamp())
+latest_date = max(consolidated_melted['month_year'].dt.to_timestamp())
+latest_date_plus_one_month = latest_date + pd.DateOffset(months=1)
+date_range = pd.date_range(start=earliest_date, end=latest_date_plus_one_month, freq='MS')
+
+
+sns.histplot(
+    data=consolidated_melted, 
+    x=consolidated_melted["month_year"].dt.to_timestamp(), 
+    weights="count", 
+    hue="item_type",
+    multiple="stack", 
+    bins = len(consolidated_melted),
+)
+
+plt.xlabel('Dates')
+plt.ylabel('Number of transactions')
+plt.xticks(date_range, [date.strftime('%b-%Y') for date in date_range], rotation=90 )
+
+plt.show()
+```
+<img src="images/time.png" width="1200" height="500" />
+
+#### Analysis: 
+- There seems to be a one time surge in sales over period (Nov 2016 - Mar 2017) before going back to same levels as pre-surge.
+- No cyclical pattern is observed on a monthly basis.
+- Looking at 'Single items by year' chart, there is no distinct pattern when comparing months of 2016 to 2017. 
