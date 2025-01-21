@@ -4,7 +4,7 @@
 - [Analysis metrics](#analysis-metrics)
   - [1. What Are the Top 5 Most Popular Products and Categories?](#1-what-are-the-top-5-most-popular-products-and-categories)
      - [Result for 1](#result-for-1)
-  - [How do sales vary by day of the week and time of the day?](#2-how-do-sales-vary-by-day-of-the-week-and-time-of-the-day)
+  - [2. How do sales vary by day of the week and time of the day?](#2-how-do-sales-vary-by-day-of-the-week-and-time-of-the-day)
      - [Result for 2](#result-for-2)
 
 
@@ -133,6 +133,7 @@ print(f"Order of days from most to least sales:\n {sales_by_day_str}")
 ##### Result for 2: 
 <img src="images/order_day.png" width="600" height="200" />
 
+### "Hourly and Weekly Sales Analysis"
 - Extract the hour from the DateTime column and group the bakery transactions by both Day of week and hour of day.
 - Calculate the number of transactions for each combination and sort the results chronologically by day and hour.
 
