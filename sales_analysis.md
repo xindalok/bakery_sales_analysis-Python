@@ -307,6 +307,21 @@ plt.show()
 ```
 <img src="images/percentages.png" width="1200" height="550" />
 
+#### Analyzing Monthly Transaction Trends and Changes
+
+- Calculate Monthly Totals:
+   - Total transactions, single-item transactions, and multi-item transactions are calculated for each month.
+- Merge Datasets:
+   - The results are combined into a single consolidated DataFrame for analysis.
+
+- Add Percentages:
+   - Compute the percentage of single-item transactions (`pct_single`) relative to total transactions.
+
+- Track Changes: 
+   - Calculate month-over-month changes for:
+     - Single-item transaction percentage (`pct_single_change`).
+     - Total transactions (`total_trans_pct_change`).
+
 ``` python
 # get dataframes for analysis of monthly total, single-item and multi-item transactions
 
@@ -319,15 +334,63 @@ single_items_monthly = single_items.groupby("month_year")["TransactionNo"].size(
 # number of multi-item transactions per month
 multi_items_monthly = multi_items.groupby("month_year").agg({"TransactionNo": "nunique"}).reset_index()
 
-# merge the 3 datasets
 consolidated_monthly = pd.merge(single_items_monthly, multi_items_monthly, on = 'month_year', how = 'inner', suffixes = ('_single', '_multi')).merge(total_monthly_transactions, on = 'month_year', how = 'inner')
 consolidated_monthly = consolidated_monthly.rename(
         columns = {
             'TransactionNo_single': 'num_single_item', 
             'TransactionNo_multi':'num_multi_item', 
-            'TransactionNo':'total_transactions'}
+            'TransactionNo':'total_trans'}
 )
 
-consolidated_monthly["pct_single"] = (consolidated_monthly["num_single_item"] / consolidated_monthly["total_transactions"]).round(2)
+consolidated_monthly["pct_single"] = (consolidated_monthly["num_single_item"] / consolidated_monthly["total_trans"]).round(2)
+
+# Add a column to compare change in single item orders & total transactions
+consolidated_monthly["pct_single_change"] = (consolidated_monthly["num_single_item"].pct_change()*100).round(2)
+consolidated_monthly["total_trans_pct_change"] = (consolidated_monthly["total_trans"].pct_change()*100).round(2)
+
+
 print(consolidated_monthly)
 ```
+<img src="images/total_changes.png" width="1200" height="400" />
+
+#### Visually compare single-item transactions over time
+- Create yearly subsets of data from `consolidated_monthly` based on the `month_year` column.
+- Plot the percentage of single-item transactions (`pct_single`) for each year, comparing across months.
+
+``` python
+year_list = consolidated_monthly["month_year"].dt.year.unique()
+yearly_sales = {}
+
+# loop through unique years to create a dataframe of each year
+for year in year_list:
+    yearly_sales[f'sales_{year}'] = consolidated_monthly[consolidated_monthly["month_year"].astype(str).str.startswith(str(year))].reset_index(drop = True)
+    
+
+plt.figure(figsize = (10,6))
+
+
+# plot each year by their months, to show comparison between each year by their months
+for year, df in yearly_sales.items():
+    sns.lineplot(
+        data=df,
+        x=df["month_year"].dt.month,  
+        y="pct_single",
+        label=year  
+)
+
+plt.title('Single item transactions by year')
+plt.xticks(
+    ticks=range(1, 13), 
+    labels=pd.to_datetime([f'2020-{month:02d}-01' for month in range(1, 13)]).strftime('%b'),
+    rotation=45
+)
+plt.xlabel('Months')
+plt.ylabel('% of single item transactions')
+plt.grid(True, color='gray', alpha=0.1)
+
+plt.show()
+```
+<img src="images/yearly.png" width="1200" height="400" />
+<img src="images/yearly_graph.png" width="1200" height="600" />
+
+
