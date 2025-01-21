@@ -476,6 +476,33 @@ plt.show()
 <img src="images/time.png" width="1200" height="500" />
 
 #### Analysis: 
-- There seems to be a one time surge in sales over period (Nov 2016 - Mar 2017) before going back to same levels as pre-surge.
+- There seems to be a one time surge in sales over period (Nov 2016 - Mar 2017) before going back to same levels.
+- No cyclical pattern is observed on a monthly basis.
+- Looking at 'Single items by year' chart, there is no distinct pattern when comparing months of 2016 to 2017. 
+
+---------------
+---------------
+
+### 1. What are the Top 5 most popular products and categories?
+- Top 5 most popular items are: Coffee, Bread, Tea, Cake, Pastry.
+<img src="images/ranked.png" width="200" height="300" />
+
+
+### 2. How do sales vary by day of the week and time of the day?
+- Weekends consistently drive higher transaction volumes
+- The peak sales period occurs between 10:00 AM and 12:00 PM. <br> <br>
+Order of days from most to least sales: <br>
+ Saturday: 3554<br>
+ Friday: 3266<br>
+ Sunday: 3118<br>
+ Monday: 3035<br>
+ Tuesday: 2645<br>
+ Thursday: 2601<br>
+ Wednesday: 2288<br>
+
+ <img src="images/thru_day.png" width="1000" height="500" />
+
+### 3. What are the seasonal trends and patterns in sales?
+- There seems to be a one time surge in sales over period (Nov 2016 - Mar 2017) before going back to same levels.
 - No cyclical pattern is observed on a monthly basis.
 - Looking at 'Single items by year' chart, there is no distinct pattern when comparing months of 2016 to 2017. 
