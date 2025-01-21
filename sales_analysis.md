@@ -103,7 +103,7 @@ print(f"The Top 5 most popular items are: {popular_item_str}.")
 
 ```
 ##### Result for 1: 
-<img src="images/top_5.png" width="500" height="40" />
+<img src="images/top_5.png" width="500" height="30" />
 
 -------
 
