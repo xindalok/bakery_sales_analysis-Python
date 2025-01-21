@@ -14,6 +14,8 @@
      - [Single item transactions](#analyze-single-item-transactions)
      - [Multi item transactions](#analysis-of-multi-item-transactions-by-day-of-the-week)
        - [Bar graph for visualisation](#bar-graph-for-visualisation)
+  - [3. What are the seasonal trends and patterns in sales?](#3-what-are-the-seasonal-trends-and-patterns-in-sales)
+
 
 
 
@@ -341,6 +343,8 @@ for p in bar_plot.patches:
 plt.show()
 ```
 <img src="images/percentages.png" width="1200" height="550" />
+
+### 3. What are the seasonal trends and patterns in sales?
 
 #### Analyzing Monthly Transaction Trends and Changes
 
